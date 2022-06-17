@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developing...</title>
+    <style>
+        h2{
+            color: white;
+        }
+        .key{
+            border: 1px white solid;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            color: red;
+            position: absolute;
+            font-size: 20px;  
+            text-align: center;  
+            line-height: 10px;
+        }
+       
+        #key1{
+            top: 60%;
+            left: 25%;
+            
+        }
+        #key2{
+            top: 65%;
+            left: 35%;
+        }
+        #key3{
+            top: 70%;
+            left: 45%;
+        }
+        #key4{
+            top: 70%;
+            left: 55%;
+        }
+        #key5{
+            top: 65%;
+            left: 65%;
+        }
+        #key6{
+            top: 60%;
+            left: 75%;
+        }
+        
+        #path1{ 
+            width: 50px;
+            height: 1000px;
+            position: fixed;
+            left: 29%;
+            top: -5%;
+            transform: rotate(30deg);
+        } 
+        #path2{
+            width: 50px;
+            height: 1000px;
+            position: fixed;
+            left: 37.2%;
+            top: 2%;
+            transform: rotate(20deg); 
+        } 
+        #path3{
+            width: 50px;
+            height: 1000px;
+            position: fixed;
+            left: 45%;
+            top: 5%; 
+        }
+        #path4{
+            width: 50px;
+            height: 1000px;
+            position: fixed;
+            left: 55%;
+            top: 5%; 
+            
+        }
+        #path5{
+          
+            width: 50px;
+            height: 1000px;
+            position: fixed;
+            left: 62.8%;
+            top: 2%; 
+            transform: rotate(-20deg);
+        }
+        #path6{
+           
+            width: 50px;
+            height: 1000px;
+            position: fixed;
+            left: 71%;
+            top: -5%; 
+            transform: rotate(-30deg);
+        }
+        .ball{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: yellow;
+            position: absolute;
+            top: 2%;
+            visibility:hidden ;
+            animation-name:downmove;
+            animation-duration: 3s;
+            visibility:hidden;
+            animation-iteration-count: infinite;
+            animation-play-state: paused;
+        }
+       
+       
+        @keyframes downmove{
+            100%{
+                animation-timing-function:ease-in;
+                top: 110%;
+            }
+        }
+        
+       
+    </style>
+   
+</head>
+<body bgcolor="#000">
+    <h2 id="score" align="left">Score:</h2>
+    <div  id="path1">
+        <div class="ball" id="ball1"></div>
+    </div>
+    <div class="key" id="key1">
+        <p>A</p>
+    </div>
+    <div id="path2">
+        <div class="ball" id="ball2"></div>
+    </div>
+    <div class="key" id="key2">
+        <p>S</p>
+    </div>
+    <div  id="path3">
+        <div class="ball" id="ball3"></div>
+    </div>
+    <div class="key" id="key3">
+        <p>D</p>
+    </div>
+    <div  id="path4">
+        <div class="ball" id="ball4"></div>
+    </div>
+    <div class="key" id="key4">
+        <p>J</p>
+    </div>
+    <div  id="path5">
+        <div class="ball" id="ball5"></div>
+    </div>
+    <div class="key" id="key5">
+        <p>K</p>
+    </div>
+    <div  id="path6">
+        <div class="ball" id="ball6"></div>
+    </div>
+    <div class="key" id="key6">
+        <p>L</p>
+    </div>
+    <button onclick="play2()">Play</button>
+    <script>
+        function id(x){
+          if(typeof x == "string"){
+           return document.getElementById(x);
+          }
+          return x;
+      }
+      var scorevalue=0;
+      var score=id("score");
+      var key1=id("key1");
+      var key2=id("key2");
+      var key3=id("key3");
+      var key4=id("key4");
+      var key5=id("key5");
+      var key6=id("key6");
+      var ball=document.getElementsByClassName("ball");
+      var ball1=id("ball1");
+      var ball2=id("ball2");
+      var ball3=id("ball3");
+      var ball4=id("ball4");
+      var ball5=id("ball5");
+      var ball6=id("ball6");
+      var count=0;
+      var key=document.getElementsByClassName("key");
+      //ASDJKL
+      function play(para){
+        para.style.backgroundColor="blue";
+         setTimeout(function(){
+            para.style.backgroundColor="white";
+         },100);
+      }
+      //吃球
+      function eat(b){
+       
+        if(b.offsetTop>=599&&b.offsetTop<=694){
+             b.style.visibility="hidden";
+             scorevalue++;
+            score.innerHTML="Score:"+scorevalue;
+             setTimeout(function(){
+            b.style.visibility="visible";
+         },5000);
+         
+         }
+      }  
+      function disapper(b){
+        setTimeout(function(){
+            b.style.visibility="hidden";
+         },5000);
+      }
+      function play2(){
+          function number(){
+          var no = Math.floor(Math.random()*6+1);
+          console.log(count+":"+no);
+          
+          if(no==1){
+              ball1.style.visibility="visible";
+              ball1.style.animationPlayState="running";
+              disapper(ball1);
+              count++;
+          }else if(no==2){
+             ball2.style.visibility="visible";
+              ball2.style.animationPlayState="running";
+              count++;
+              disapper(ball2);
+          }else if(no==3){
+            ball3.style.visibility="visible";
+              ball3.style.animationPlayState="running";
+              count++;
+              disapper(ball3);
+          }else if(no==4){
+            ball4.style.visibility="visible";
+              ball4.style.animationPlayState="running";
+              count++;
+              disapper(ball4);
+          }else if(no==5){
+            ball5.style.visibility="visible";
+              ball5.style.animationPlayState="running";
+              count++;
+              disapper(ball5);
+          }else if(no==6){
+            ball6.style.visibility="visible";
+              ball6.style.animationPlayState="running";
+              count++;
+              disapper(ball6);
+          }
+      }
+      const start=setInterval(number,3000);
+    
+      }
+      function stop(){    
+          clearInterval(start);
+          ball.style.visibility="hidden";
+      }
+        
+      
+       
+     
+        document.onkeydown=function(e){
+       var keyNum=window.event?e.keyCode:e.which;
+       if(keyNum==65){ 
+         play(key1);
+         eat(ball1);
+       }else if(keyNum==83){
+        play(key2);
+        eat(ball2);
+       }else if(keyNum==68){
+        play(key3);
+        eat(ball3);
+       }else if(keyNum==74){
+        play(key4);
+        eat(ball4);
+       }else if(keyNum==75){
+        play(key5);
+        eat(ball5);
+       }else if(keyNum==76){
+        play(key6);
+        eat(ball6);
+       }
+       }
+       
+   </script>
+</body>
+</html>
